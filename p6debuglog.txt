@@ -1,0 +1,89 @@
+gcc -g p6original.c 
+ gdb a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+---Type <return> to continue, or q <return> to quit---
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x910: file p6original.c, line 59.
+(gdb) r
+Starting program: /home/runner/pps-IA1-practice/a.out 
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at p6original.c:59
+59  {
+(gdb) n
+62    input_two_string(a,b);
+(gdb) s
+input_two_string (a=0x7ffe5b4bbd90 "\001", 
+    b=0x7ffe5b4bbdb0 "\200\t\300:qU")
+    at p6original.c:4
+4     printf("Enter the word : ");
+(gdb) n
+5     scanf("%s",a);
+(gdb) n
+Enter the word : hello
+6     printf("Enter the word : ");
+(gdb) n
+7     scanf("%s",b);
+(gdb) n
+Enter the word : world
+8   }
+(gdb) n
+main () at p6original.c:63
+63    ans=strcmp(a,b);
+(gdb) s
+strcmp (a=0x7ffe5b4bbd90 "hello", 
+    b=0x7ffe5b4bbdb0 "world") at p6original.c:11
+11    int i=0,result;
+(gdb) n
+14      if(a[i]>b[i])
+(gdb) n
+19      else if(b[i]>a[i])
+(gdb) n
+21        result=1;
+(gdb) n
+22        break;
+(gdb) n
+29  if(a[i]=='\0')
+(gdb) n
+33  else if(b[i]=='\0')
+(gdb) n
+37  if(a[i]=='\0' && b[i]=='\0')
+(gdb) n
+41  return result;
+(gdb) n
+42  }
+(gdb) n
+main () at p6original.c:64
+64    output(a,b,ans);
+(gdb) s
+output (a=0x7ffe5b4bbd90 "hello", 
+    b=0x7ffe5b4bbdb0 "world", ans=1)
+    at p6original.c:45
+45    if(ans==-1)
+(gdb) n
+49    else if(ans==1)
+(gdb) n
+51      printf("%s is greater than %s",b,a);
+(gdb) n
+57  }
+(gdb) n
+main () at p6original.c:65
+65    return 0;
+(gdb) c
+Continuing.
+world is greater than hello[Inferior 1 (process 30) exited normally]
+(gdb) 
